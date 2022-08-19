@@ -6,6 +6,7 @@ import GetStarted from '../screens/GetStarted/GetStarted';
 import Login from '../screens/Login/Login';
 import SignUp from '../screens/SignUp/SignUp';
 import FoodMenu from '../screens/FoodMenu/foodMenu';
+import term_Condition from '../screens/TERM AND CONDITION/t&c';
 
 
 const Stack = createNativeStackNavigator();
@@ -23,6 +24,7 @@ function Route() {
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="FoodMenu" component={FoodMenu} />
+          <Stack.Screen name="term_Condition" component={term_Condition} />
         </Stack.Navigator>
       </NavigationContainer>
     );
