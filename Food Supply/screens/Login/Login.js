@@ -1,32 +1,160 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet, Image, Text, View, TextInput} from 'react-native';
-import {WebView} from 'react-native-webview';
+import React,{useState} from 'react';
+import {
+  StyleSheet,
+  Image,
+  Text,
+  TextInput,
+  View,
+  TouchableOpacity,
+  ImageBackground,
+  Dimensions,
+  ScrollView,
+  KeyboardAvoidingView
+} from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
 
-
-const Login = () => {
+const Login = ({navigation}) => {
   console.log('shee');
-  return (
-    <View style={styles.mainView}>
-      <View style={styles.topView}>
-        <Image source={{uri: 'https://i.ibb.co/1bbqnRQ/Group-3.png'}} />
-        <Text style={styles.topText}>Login</Text>
-        <Text style={styles.topText}>Food For Everyone</Text>
-      </View>
-      <View>
-        <Text style={styles.uiText}>User Id</Text>
-        <TextInput style={styles.inputStyle}>
+    
+  const [loginStatus,setloginStatus] = useState(true);
+  
+  const [signupstatus,setsignupstatus] = useState(false); 
 
-        </TextInput>
+  const [lCheckBox, setlCheckBox] = useState(false)
+
+  const selectLogin = () => {
+      console.log("selectLogin")
+      setloginStatus(true)
+      setsignupstatus(false)
+      console.log("loginStatus==",loginStatus, "signupstatus==",signupstatus)
+    };
+
+    const selectSignup = () => {
+      console.log("selectSignup")
+      setsignupstatus(true)
+      setloginStatus(false)
+      console.log("loginStatus==",loginStatus, "signupstatus==",signupstatus)
+    };  
+
+
+  return (
+    <ScrollView style={styles.mainView}>
+      <KeyboardAvoidingView>
+      <View style={styles.topView}>
+        <ImageBackground
+          resizeMode="stretch"
+          style={{width: '100%', height: '100%', justifyContent: 'center'}}
+          source={{uri: 'https://i.ibb.co/gwQqSxz/top-image.jpg'}}>
+          <Text style={styles.topText}>Welcome</Text>
+          <Text style={styles.topText1}>Food For Everyone</Text>
+        </ImageBackground>
+
+        {/* <Image source={require("../../images./top image.jpg")}></Image> */}
+      </View>
+      <View style={styles.topView1}>
+        <TouchableOpacity
+          style={{
+            width: '50%',
+            height: 40,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          onPress={() => {
+            selectLogin()
+          }}
+          >
+          <Text>Login</Text>
+          <View
+            style={{
+              width: '50%',
+              height: 3,
+              backgroundColor: loginStatus? '#FA4A0C' :'#FFFFFF',
+              marginTop: 5,
+            }}></View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            selectSignup()
+          }}
+          style={{
+            width: '50%',
+            height: 40,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text>Signup</Text>
+          <View
+            style={{
+              width: '50%',
+              height: 3,
+              backgroundColor: signupstatus ? '#FA4A0C' :'#FFFFFF',
+              marginTop:5
+            }}></View>
+        </TouchableOpacity>
+      </View>
+     {loginStatus &&  <View>
+        <Text style={styles.uiText}>User Id</Text>
+        <TextInput style={styles.inputStyle} 
+                   autoCapitalize="none">
+                    
+                   </TextInput>
 
         <Text style={styles.uiText}>Pasword</Text>
-        <TextInput style={styles.inputStyle}>
+        <TextInput style={styles.inputStyle}
+        secureTextEntry={true}
+        >
 
         </TextInput>
         <View>
           <Text style={styles.uiText}>Forget Your Pasword?</Text>
         </View>
+      </View> }
+
+      {signupstatus &&
+        <View>
+          <Text style={styles.uiText}>Full Name</Text>
+        <TextInput style={styles.inputStyle}></TextInput>
+
+        <Text style={styles.uiText}>Email Id</Text>
+        <TextInput style={styles.inputStyle}></TextInput>
+        
+        <Text style={styles.uiText}>Mobile Number</Text>
+        <TextInput style={styles.inputStyle}></TextInput>
+        </View>
+      }
+      <View style={{flexDirection:'row',alignItems:'center'}}>
+        <CheckBox
+           
+          value = {lCheckBox}
+          onValueChange = { (newValue)=> setlCheckBox(newValue) }
+          >
+          
+          </CheckBox>
+          <Text> I have reed and agreed all the TC </Text>
+        
       </View>
-    </View>
+
+      { loginStatus && <View style={{width: '100%', height: 150,}}>
+        <TouchableOpacity
+          style={styles.lButton}
+          onPress={() => {
+            navigation.navigate('FoodMenu');
+          }}>
+          <Text style={styles.lBText}>Login</Text>
+        </TouchableOpacity>
+      </View>}
+      { signupstatus && <View style={{width: '100%', height: 150,}}>
+        <TouchableOpacity
+          style={styles.lButton}
+          onPress={() => {
+            navigation.navigate('FoodMenu');
+          }}>
+          <Text style={styles.lBText}>Signup</Text>
+        </TouchableOpacity>
+      </View>}
+      </KeyboardAvoidingView>
+    </ScrollView>
+
     // <WebView source={{ uri: 'https://digitalseva.csc.gov.in/' }} />
   );
 };
@@ -35,11 +163,7 @@ export default Login;
 
 const styles = StyleSheet.create({
   mainView: {
-    width: '100%',
-    height: '100%',
-    left: 0,
-    top: 0,
-    borderRadius: 20,
+    flex: 1,
     backgroundColor: '#aaaa80',
   },
   topView: {
@@ -52,32 +176,67 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  topView1: {
+    flexDirection: 'row',
+    width: '100%',
+    height: 50,
+    borderBottomLeftRadius:15,
+    borderBottomRightRadius:15,
+    backgroundColor: '#FFFFFF',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   topText: {
     fontStyle: 'normal',
     fontSize: 40,
     // lineHeight:"60%",
     latterspacing: -3,
+    alignSelf: 'center',
+    color: '#ff4f00',
+  },
+  topText1: {
+    fontStyle: 'normal',
+    fontSize: 30,
+    // lineHeight:"60%",
+    latterspacing: -3,
+    alignSelf: 'center',
     color: '#ff4f00',
   },
 
   uiText: {
     fontStyle: 'regular',
     fontSize: 18,
-    lineHeight:25,
-    mergintop:5,
-    marginBottom:5,
+    lineHeight: 25,
+    mergintop: 5,
+    marginBottom: 5,
     latterspacing: -3,
     color: '#ff34b3',
   },
-  inputStyle:{
-    fontFamily:"regular",
-    fontSize:18,
-    borderWidth:1,
-    borderColor:"#ff34b3",
-    paddingHorizontal:15,
-    paddingVertical:7,
-    borderRadius:2,
-    backgroundColor:"white"
+  inputStyle: {
+    fontFamily: 'regular',
+    fontSize: 18,
+    borderWidth: 1,
+    borderColor: '#ff34b3',
+    paddingHorizontal: 15,
+    paddingVertical: 7,
+    borderRadius: 2,
+    backgroundColor: 'white',
+  },
 
-  }
+  lButton: {
+    width: 294,
+    height: 70,
+    backgroundColor: '#FF5800',
+    borderRadius: 30,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+
+  lBText: {
+    fontSize: 25,
+    lineHeight: 22,
+    color: '#00ee00',
+  },
 });

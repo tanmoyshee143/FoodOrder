@@ -2,15 +2,15 @@ import React from 'react';
 import { StyleSheet, Text,View } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 
-const SignUp = () => {
+const FoodMenu = () => {
   
   
-  console.log("shee")
+  console.log("foodmenu")
   return (
     <View>
-      <Text>SIGNUP</Text>
+      <Text>FoodMenu</Text>
     </View>
   )
 }
 
-export default SignUp;
+export default FoodMenu;

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import {StyleSheet, Image, Text, View, TouchableOpacity,ImageBackground,Dimensions} from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
 
 const scrreenHeight = Dimensions.get('window').height -100
 
