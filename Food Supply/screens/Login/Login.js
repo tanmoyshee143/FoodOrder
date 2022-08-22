@@ -41,16 +41,23 @@ const Login = ({navigation}) => {
     console.log('loginStatus==', loginStatus, 'signupstatus==', signupstatus);
   };
 
-  const textInputDeta = () => {
+  const textInputDetaLogin = () => {
     console.log('text', text, 'pasword', pasword, 'lCheckBox', lCheckBox);
     if (text != '' && pasword != '' && lCheckBox == true) {
-      navigation.navigate('FoodMenu');
+      navigation.navigate('HomeTabs');
+    }
+  };
+
+  const textInputDetaSignup = () => {
+    console.log('name', name, 'sEmail', sEmail, "mNumber", mNumber, 'lCheckBox', lCheckBox);
+    if (name != '' && sEmail != '' && mNumber != "" && lCheckBox == true) {
+      navigation.navigate('HomeTabs');
     }
   };
 
   return (
     <ScrollView style={styles.mainView}>
-      <KeyboardAvoidingView>
+      
         <View style={styles.topView}>
           <ImageBackground
             resizeMode="stretch"
@@ -109,7 +116,7 @@ const Login = ({navigation}) => {
               style={styles.inputStyle}
               autoCapitalize="none"
               placeholder="Enter your email"
-              onChangeText={newText => setText(newText)}
+              onChangeText={(newText) => setText(newText)}
               defaultValue={text}></TextInput>
 
             <Text style={styles.uiText}>Pasword</Text>
@@ -153,7 +160,7 @@ const Login = ({navigation}) => {
           <Text> I have reed and agreed all the </Text>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('term_Condition');
+              navigation.navigate('TermCondition');
             }}>
             <Text style={{color: 'blue'}}>T&C</Text>
           </TouchableOpacity>
@@ -164,7 +171,7 @@ const Login = ({navigation}) => {
             <TouchableOpacity
               style={styles.lButton}
               onPress={() => {
-                textInputDeta();
+                textInputDetaLogin();
               }}>
               <Text style={styles.lBText}>Login</Text>
             </TouchableOpacity>
@@ -175,13 +182,13 @@ const Login = ({navigation}) => {
             <TouchableOpacity
               style={styles.lButton}
               onPress={() => {
-                navigation.navigate('FoodMenu');
+                textInputDetaSignup();
               }}>
               <Text style={styles.lBText}>Signup</Text>
             </TouchableOpacity>
           </View>
         )}
-      </KeyboardAvoidingView>
+      
     </ScrollView>
 
     // <WebView source={{ uri: 'https://digitalseva.csc.gov.in/' }} />

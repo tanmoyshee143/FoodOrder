@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View,ScrollView} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 
-const term_Condition = () => {
+const TermCondition = () => {
   console.log('term_Condition');
   return (
     <ScrollView style = {{flex:1,alignContent:"center"}}>
@@ -364,4 +364,4 @@ const term_Condition = () => {
   );
 };
 
-export default term_Condition;
+export default TermCondition;
