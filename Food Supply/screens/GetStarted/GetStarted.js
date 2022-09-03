@@ -13,7 +13,9 @@ const GetStarted = ({navigation}) => {
             <ImageBackground
             resizeMode='stretch'
         style = {{flex:1,justifyContent:'center'}}
-          source={{uri:"https://i.ibb.co/p336Sf2/i-Phone-11-Pro-Max-1-2.png"}}>
+          // source={{uri:"https://i.ibb.co/p336Sf2/i-Phone-11-Pro-Max-1-2.png"}}
+          source={require('../../../img/foodsplash.png')}
+          >
             <TouchableOpacity
         style={styles.gStarted}
         onPress={() => {
